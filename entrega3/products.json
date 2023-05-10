@@ -1,0 +1,45 @@
+[{
+        "id": 1,
+        "title": "Producto 1",
+        "desciption": "producto de prueba 1",
+        "price": 1001,
+        "thumbnail": "Sin imagen",
+        "code": "AB0001",
+        "stock": 25
+    },{
+        "id": 2,
+        "title": "Producto 2",
+        "desciption": "producto de prueba 2",
+        "price": 2002,
+        "thumbnail": "Sin imagen",
+        "code": "AB0045",
+        "stock": 40
+    },
+    {
+        "id": 3,
+        "title": "Producto 3",
+        "desciption": "producto de prueba 3",
+        "price": 3003,
+        "thumbnail": "Sin imagen",
+        "code": "AB0013",
+        "stock": 15
+    },
+    {
+        "id": 4,
+        "title": "Producto 4",
+        "desciption": "producto de prueba 4",
+        "price": 4004,
+        "thumbnail": "Sin imagen",
+        "code": "AB0014",
+        "stock": 14
+    },
+    {
+        "id": 5,
+        "title": "Producto 5",
+        "desciption": "producto de prueba 5",
+        "price": 5005,
+        "thumbnail": "Sin imagen",
+        "code": "AB0041",
+        "stock": 250
+    }
+]
