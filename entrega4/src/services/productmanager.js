@@ -28,7 +28,6 @@ export class ProductManager {
                 newProduct.setId(1);
                  end = 1;
             } else {
-                //newProduct.setId() = products[products.length -1].id + 1;
                 newProduct.setId(products[products.length -1].id + 1);
                  end = products[products.length -1].id + 1;
             }
@@ -64,9 +63,12 @@ export class ProductManager {
             if (buscador === -1){
                 console.log("ese id no existe por favor realice un post de product")
             } else {            
-                products[buscador] = product
+                products[buscador] = {
+                    id: products[buscador].id,
+                    ...product,
+                };
                 await this.writeFile(products)
-                return products
+                return (products[buscador])
             }
         }else {
             console.log("No hay un valor a actualizar")
@@ -76,11 +78,15 @@ export class ProductManager {
 
 
     async deleteProduct(id){
+        let objetivo
         const products = await this.readFile();
         const buscador = products.findIndex(prod => prod.id == id)
+        objetivo = products[buscador]
         products.splice(buscador, 1)   
+        console.log(objetivo)
         try{
-            await this.writeFile()
+            await this.writeFile(products)
+            return objetivo
         } catch (err) {
             console.log(`Error: ${err.message}`)
         }

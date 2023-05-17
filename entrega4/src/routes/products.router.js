@@ -64,13 +64,13 @@ router.post("/", async (req, res) => {
 router.put("/:pid", async (req, res) => {
     if (!!req.body){
         const id = req.params.pid;
-        const product = JSON.parse(req.body);
+        const product = req.body;
         const updatedProduct = await service.updateProduct(id, product);
         if (!!updatedProduct){;
             return res.status(200).json({
                 status: "Success",
-                message: "Products found",
-                data: product
+                message: "Products updated",
+                data: updatedProduct
             });
         }else return res.status(400).json({
             status: "Error",
@@ -87,9 +87,11 @@ router.put("/:pid", async (req, res) => {
 router.delete('/:pid', async (req, res) => {
     const id = req.params.pid;
     const product = await service.deleteProduct(id);
+    console.log("afuera")
+    console.log(product)
     if (!!product) return res.status(200).json({
         status: "Success",
-        message: `Product ${product} was successfully deleted`,
+        message: `Product ${product.id} was successfully deleted`,
         data: product
     })
     else return res.status(404).json({

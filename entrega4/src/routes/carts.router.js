@@ -7,6 +7,21 @@ const router = Router();
 const service = new CartManager();
 await service.customConstructor(path.resolve() + "\\src\\db\\carts.json");
 
+router.get('/', async (req, res) => {
+    let products = await service.getCarts();
+    if (!!req.query.limit) products = products.slice(0, req.query.limit);
+    if (!!products) return res.status(200).json({
+        status:"Success",
+        message: "Products found",
+        data: products
+    });
+    else return res.status(404).json({
+        satus:"Error",
+        message: "Products missing",
+        data: null
+    })
+})
+
 router.post("/", async (req, res) => {
         const addedCart = await service.addCart();
         if (!!addedCart) {
@@ -29,7 +44,7 @@ router.get('/:cid', async (req, res) => {
     if (!!cart) return res.status(200).json({
         status: "Success",
         message: "Cart found",
-        data: cart.products
+        data: cart
     })
     else return res.status(404).json({
         status: "Error",
@@ -45,8 +60,8 @@ router.post("/:cid/product/:pid", async (req, res) => {
     if (!!addedProduct) {
         return res.status(200).json({
             status: "Success",
-            message: "Product added successfully",
-            data: addedProduct
+            message: `Product added to cart ${addedProduct.id} successfully`,
+            data: addedProduct.products
         });
     } else return res.status(400).json({
         status: "Error",
