@@ -22,7 +22,6 @@ export class ProductManager {
     async addProduct(product){
         if (this.validate(product)) {
             let end
-            console.log(product)
             const products = await this.getProducts()
             const newProduct = new Product(product.title, product.description, product.code, product.price, product.stock, product.category, product.thumbnail);
             if (products.length === 0){
@@ -30,9 +29,8 @@ export class ProductManager {
                  end = 1;
             } else {
                 newProduct.setId(products[products.length -1].id + 1);
-                 end = products[products.length -1].id + 1;
+                end = products[products.length -1].id + 1;
             }
-            console.log(newProduct)
             products.push(newProduct)
             try{
                 await this.writeFile(products)

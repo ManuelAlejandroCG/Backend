@@ -44,10 +44,9 @@ socketServer.on("connection", (socket) => {
     console.log(socket.id +" socket conectado")
     socket.on ("addProduct", async (newProd) =>{
         try {
-            console.log(newProd)
-            await service.addProduct(newProd);
-            const productList = await service.getProducts();
-            socketServer.emit("newlist", {productList});
+            const addedProductID = await service.addProduct(newProd);
+            const addedProduct = await service.getProductById(addedProductID)
+            socketServer.emit("newItem", addedProduct);
         } catch (err){
             console.log(err);
         }
