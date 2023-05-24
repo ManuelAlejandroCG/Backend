@@ -1,0 +1,6 @@
+1
+express
+5
+express-handlebars
+serve-static
+socket.io
